@@ -1,12 +1,11 @@
 require("dotenv").config(); // Load environment variables
 const express = require("express");
 const mongoose = require("mongoose");
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const expressSession = require("express-session");
 const cors = require("cors");
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
@@ -37,13 +36,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Connect to MongoDB
-mongoose
-  .connect(MONGO_URI)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
-    process.exit(1);
-  });
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("Connected to MongoDB"))
+.catch((err) => {
+  console.error("MongoDB connection error:", err);
+  process.exit(1);
+});
 
 // User Schema
 const UserSchema = new mongoose.Schema({
@@ -126,17 +127,18 @@ app.post("/login", (req, res, next) => {
 
 // Fetch Notes
 app.get("/notes", async (req, res) => {
-  const { userId } = req.query;
-  if (!userId) {
-    return res.status(400).json({ error: "UserId is required" });
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ error: "Unauthorized" });
   }
+
   try {
-    const notes = await Note.find({ userId });
+    const notes = await Note.find({ userId: req.user._id });
     res.status(200).json(notes);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch notes" });
   }
 });
+
 
 // Add Note
 app.post("/add-note", async (req, res) => {
@@ -154,15 +156,16 @@ app.post("/add-note", async (req, res) => {
 });
 
 // Logout
-app.get("/logout", (req, res) => {
+app.get("/logout", (req, res, next) => {
   req.logout((err) => {
-    if (err) return res.status(500).json({ message: "Error logging out" });
+    if (err) return next(err);
     req.session.destroy((err) => {
       if (err) return res.status(500).json({ message: "Error destroying session" });
       res.json({ message: "Successfully logged out" });
     });
   });
 });
+
 
 // Global Error Handler
 app.use((err, req, res, next) => {
