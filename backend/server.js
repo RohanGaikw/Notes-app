@@ -15,7 +15,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 // CORS configuration
 const corsOptions = {
-  origin: ["http://localhost:5173", "https://notes-app-s1fw.vercel.app"], // ✅ Both Local & Deployed Frontend
+  origin: ["https://notes-app-s1fw.vercel.app"], // ✅ Both Local & Deployed Frontend
   methods: "GET, POST, PUT, DELETE",
   credentials: true,
 };
