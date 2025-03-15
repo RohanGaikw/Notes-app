@@ -1,0 +1,112 @@
+/* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f8bbd0, #6a0dad); /* Light pink to purple gradient */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+  
+/* Add Note Page Styling (Half Page Width) */
+.add-note-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 50vw; /* Takes half of the viewport width */
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+  
+/* Title of the Page */
+.add-note-container h2 {
+    font-size: 1.5rem;
+    color: black;
+    margin-bottom: 1rem;
+}
+  
+/* Error and Success Messages */
+.error-message {
+    color: #ff5a5a;
+    margin-bottom: 1rem;
+}
+  
+.success-message {
+    color: #4caf50;
+    margin-bottom: 1rem;
+}
+  
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+  
+.form-group label {
+    font-size: 1rem;
+    color: #6a0dad;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+  
+/* Title Input (Small Height, Full Width) */
+.add-note-container input {
+    width: 100%;
+    height: 40px; /* Small height */
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    padding: 0 10px;
+}
+  
+/* Description Textarea (80px Height) */
+.add-note-container textarea {
+    width: 100%;
+    height: 80px; /* Adjusted height */
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    padding: 10px;
+    resize: none; /* Disable resizing */
+    overflow: hidden; /* Hide scrollbars */
+}
+  
+/* Button Styling */
+.add-note-container button {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #8e24aa;
+    border: none;
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.add-note-container button:hover {
+    background-color: #6a0dad;
+}
+  
+.add-note-container button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+  
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

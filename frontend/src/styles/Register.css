@@ -1,0 +1,97 @@
+/* Register.css */
+
+/* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f8bbd0, #6a0dad); /* Light pink to purple gradient background */
+    color: #fff; /* White text for contrast */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Center content vertically */
+  }
+  
+  /* Navbar styles */
+  .navbar {
+    background-color: #8e24aa; /* Slightly lighter purple for the navbar */
+    padding: 1rem;
+  }
+  
+  .navbar-brand {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #fff !important;
+    font-size: 1.2rem;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #ffccff !important; /* Lighter purple for hover effect */
+  }
+  
+  /* Register Form Styling */
+  .login-form {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent background */
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 350px; /* Make form smaller */
+    animation: fadeIn 1.5s ease-in-out; /* Animation for login form */
+  }
+  
+  .login-form h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #100f11; /* Purple color for the header */
+  }
+  
+  .login-form input {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1.1rem;
+    color: #100f11;
+  }
+  
+  .login-form input[type="text"], .login-form input[type="password"] {
+    background-color: rgba(255, 255, 255, 0.8); /* Light background for inputs */
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    background-color: #8e24aa;
+    border: none;
+    font-size: 1.1rem;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .login-form button:hover {
+    background-color: #6a0dad;
+  }
+  
+  .login-form p {
+    color: #ff5a5a; /* Error message color */
+  }
+  
+  /* Purple Animation Effect */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

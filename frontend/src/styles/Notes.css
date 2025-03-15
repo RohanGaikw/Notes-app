@@ -1,0 +1,152 @@
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #f8bbd0, #6a0dad);
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Notes Container */
+.notes-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 50vw;
+  height: 50vh;
+  overflow: auto; /* Allow scrolling */
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+  color: black;
+}
+
+/* Title */
+.notes-container h2 {
+  font-size: 1.5rem;
+  color: #6a0dad;
+  margin-bottom: 0.5rem;
+}
+
+/* Logout Button */
+.logout-button {
+  background-color: #8e24aa;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.logout-button:hover {
+  background-color: #7b1fa2;
+}
+
+/* Error Message */
+.error-message {
+  color: #ff5a5a;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+/* Notes List */
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Individual Note Item */
+.note-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  width: 90%;
+  min-height: 60px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Note Title */
+.note-item h3 {
+  color: #6a0dad;
+  font-size: 1rem;
+  margin: 0 10px;
+}
+
+/* Note Description */
+.note-item p {
+  color: #333;
+  font-size: 0.9rem;
+  margin: 0 10px;
+}
+
+/* Edit & Delete Buttons */
+.edit-button,
+.delete-button {
+  padding: 8px 12px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.edit-button {
+  background-color: #8e24aa;
+  color: white;
+}
+
+.delete-button {
+  background-color: #e53935;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #7b1fa2;
+}
+
+.delete-button:hover {
+  background-color: #c62828;
+}
+
+/* No Notes Message */
+.no-notes {
+  color: #6a0dad;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .notes-container {
+    width: 90vw;
+    height: 60vh;
+  }
+  .note-item {
+    width: 100%;
+  }
+}

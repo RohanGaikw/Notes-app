@@ -1,0 +1,77 @@
+/* App.css */
+
+/* Global styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #f8bbd0, #6a0dad); /* Light pink to purple gradient background */
+  color: #fff; /* White text for contrast */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure full screen height */
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: #8e24aa; /* Slightly lighter purple for the navbar */
+  padding: 1rem;
+}
+
+.navbar-brand {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-size: 1.2rem;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffccff !important; /* Lighter purple for hover effect */
+}
+
+/* Welcome message styling */
+.welcome-message {
+  text-align: center;
+  padding: 3rem;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin: 2rem auto;
+  animation: fadeIn 2s ease-in-out; /* Animation for welcome message */
+}
+
+.welcome-message h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #6a0dad; /* Purple color for the header */
+}
+
+.welcome-message p {
+  font-size: 1.3rem;
+  color: #4a148c; /* Darker purple for the paragraph */
+}
+
+/* Purple Animation Effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade-in animation for the whole app */
+.container {
+  animation: fadeIn 2s ease-in-out;
+  flex: 1; /* Make the content section grow to fill available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
