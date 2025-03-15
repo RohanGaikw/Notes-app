@@ -26,18 +26,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Setup Express Session
-app.use(
-  expressSession({
-    secret: process.env.SESSION_SECRET || "yourSecretKey",
-    resave: false,
-    saveUninitialized: false,
-    cookie: { httpOnly: true, secure: false, sameSite: "lax" },
-  })
-);
+app.use(expressSession({
+  secret: process.env.SESSION_SECRET || "yourSecretKey",
+  resave: false,
+  saveUninitialized: false,
+  cookie: { httpOnly: true, secure: false, sameSite: "lax" },
+}));
 
-// Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
@@ -144,18 +142,22 @@ app.get("/notes", async (req, res) => {
 
 // Add Note
 app.post("/add-note", async (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
   try {
-    const { userId, title, description } = req.body;
-    if (!userId || !title || !description) {
+    const { title, description } = req.body;
+    if (!title || !description) {
       return res.status(400).json({ message: "All fields are required" });
     }
-    const newNote = new Note({ userId, title, description });
+    const newNote = new Note({ userId: req.user._id, title, description });
     await newNote.save();
     res.json({ message: "Note added successfully" });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
 
 // Logout
 app.get("/logout", (req, res, next) => {
@@ -175,7 +177,8 @@ app.use((err, req, res, next) => {
 });
 
 // Start Server
-app.listen(port, () => {
+app.listen(PORT, () => {
+
   console.log(`Server is running on port ${port}`);
 });
 
