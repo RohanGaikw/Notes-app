@@ -1,7 +1,7 @@
 require("dotenv").config(); // Load environment variables
 const express = require("express");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs');
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const expressSession = require("express-session");
