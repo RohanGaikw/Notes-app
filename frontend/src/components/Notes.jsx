@@ -17,18 +17,24 @@ const Notes = ({ user }) => {
     console.log("Fetching notes for user:", user._id); // Debugging
 
     const fetchNotes = async () => {
+      if (!user?._id) {
+        setError("User not authenticated.");
+        return;
+      }
+    
       try {
         const response = await axios.get(
           `https://notes-app-pi-bice-74.vercel.app/notes?userId=${user._id}`,
           { withCredentials: true }
         );
         console.log("Received Notes:", response.data); // Debugging
-        setNotes(response.data.notes || response.data);
+        setNotes(response.data);
       } catch (err) {
         console.error("Error fetching notes:", err);
         setError(err.response?.data?.message || "An error occurred while fetching notes.");
       }
     };
+    
 
     fetchNotes();
   }, [user]);

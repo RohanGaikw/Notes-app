@@ -128,33 +128,40 @@ app.post("/login", (req, res, next) => {
 
 // Fetch Notes
 app.get("/notes", async (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-
   try {
-    const notes = await Note.find({ userId: req.user._id });
+    const userId = req.query.userId; // Frontend कडून userId पाठवतोय
+    if (!userId) {
+      return res.status(401).json({ error: "Unauthorized: User not authenticated" });
+    }
+
+    const notes = await Note.find({ userId });
     res.status(200).json(notes);
   } catch (err) {
+    console.error("Error fetching notes:", err);
     res.status(500).json({ error: "Failed to fetch notes" });
   }
 });
 
 
+
 // Add Note
 app.post("/add-note", async (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
   try {
-    const { title, description } = req.body;
+    const { userId, title, description } = req.body;
+
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized: User not authenticated" });
+    }
     if (!title || !description) {
       return res.status(400).json({ message: "All fields are required" });
     }
-    const newNote = new Note({ userId: req.user._id, title, description });
+
+    const newNote = new Note({ userId, title, description });
     await newNote.save();
+
     res.json({ message: "Note added successfully" });
   } catch (error) {
+    console.error("Error adding note:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
