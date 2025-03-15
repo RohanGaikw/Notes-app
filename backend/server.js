@@ -176,6 +176,11 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Internal server error", error: err.message });
 });
 
+app.get("/", (req, res) => {
+  res.send("Server is running successfully!");
+});
+
+
 // Start Server
 app.listen(PORT, () => {
 
