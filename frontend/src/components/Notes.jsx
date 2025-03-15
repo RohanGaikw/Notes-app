@@ -19,12 +19,11 @@ const Notes = ({ user }) => {
     const fetchNotes = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/notes?userId=${user._id}`,
+          `https://notes-app-pi-bice-74.vercel.app/notes?userId=${user._id}`,
           { withCredentials: true }
         );
         console.log("Received Notes:", response.data); // Debugging
-        // Ensure backend sends notes directly in response or adjust according to the structure
-        setNotes(response.data.notes || response.data); 
+        setNotes(response.data.notes || response.data);
       } catch (err) {
         console.error("Error fetching notes:", err);
         setError(err.response?.data?.message || "An error occurred while fetching notes.");
@@ -36,7 +35,7 @@ const Notes = ({ user }) => {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:5000/logout", { withCredentials: true });
+      await axios.get("https://notes-app-pi-bice-74.vercel.app/logout", { withCredentials: true });
       navigate("/login");
     } catch (err) {
       setError("Error logging out. Please try again.");

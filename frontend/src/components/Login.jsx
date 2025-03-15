@@ -13,7 +13,11 @@ function Login({ setUser }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/login", { username, password }, { withCredentials: true });
+      const response = await axios.post(
+        "https://notes-app-pi-bice-74.vercel.app/login", 
+        { username, password }, 
+        { withCredentials: true }
+      );
       setUser(response.data.user);
       navigate("/notes");
     } catch (err) {

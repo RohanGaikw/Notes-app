@@ -18,7 +18,7 @@ function Register({ setUser }) {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/register", {
+      const response = await axios.post("https://notes-app-pi-bice-74.vercel.app/register", {
         username,
         password,
       });

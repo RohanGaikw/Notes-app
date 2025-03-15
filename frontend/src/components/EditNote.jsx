@@ -11,10 +11,10 @@ const EditNote = () => {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/notes/${id}`);
-        setNote(response.data);  // Assuming response has { title, description }
+        const response = await axios.get(`https://notes-app-pi-bice-74.vercel.app/notes/${id}`);
+        setNote(response.data);
       } catch (err) {
-        setError('Error fetching note.');
+        setError("Error fetching note.");
       }
     };
 
@@ -32,15 +32,13 @@ const EditNote = () => {
       // Check if the update function is available before calling
       const updateNote = async () => {
         try {
-          const response = await axios.put(
-            `http://localhost:5000/notes/${id}`,  // Correct URL
+          await axios.put(
+            `https://notes-app-pi-bice-74.vercel.app/notes/${id}`,
             { title: note.title, description: note.description },
             { withCredentials: true }
           );
-          console.log("Note updated successfully:", response.data);
-          navigate('/notes');  // Redirect to notes page after update
+          navigate("/notes");
         } catch (err) {
-          console.error("Error updating note:", err);
           setError("Failed to update note.");
         }
       };

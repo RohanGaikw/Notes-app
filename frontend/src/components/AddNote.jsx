@@ -26,7 +26,7 @@ const AddNote = ({ user }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:5000/add-note",
+        "https://notes-app-pi-bice-74.vercel.app/add-note",
         { userId: user._id, title, description },
         { withCredentials: true }
       );
