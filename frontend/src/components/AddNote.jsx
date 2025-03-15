@@ -13,7 +13,9 @@ const AddNote = ({ user }) => {
     e.preventDefault();
     setError("");
     setSuccess("");
-
+  
+    console.log("User object in frontend:", user); // Debugging
+  
     if (!user?._id) {
       setError("User not authenticated.");
       return;
@@ -22,24 +24,27 @@ const AddNote = ({ user }) => {
       setError("All fields are required.");
       return;
     }
-
+  
     setLoading(true);
     try {
+      console.log("Sending request with:", { userId: user._id, title, description }); // Debugging
       const response = await axios.post(
         "https://notes-app-pi-bice-74.vercel.app/add-note",
         { userId: user._id, title, description },
         { withCredentials: true }
       );
+      console.log("Received Response:", response.data); // Debugging
       setSuccess(response.data.message);
       setTitle("");
       setDescription("");
     } catch (err) {
+      console.error("❌ Error adding note:", err);
       setError(err.response?.data?.message || "Error adding note.");
     } finally {
       setLoading(false);
     }
   };
-
+  
   return (
     <div className="add-note-container">
       <h2>Add a New Note</h2>

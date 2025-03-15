@@ -147,11 +147,15 @@ app.get("/notes", async (req, res) => {
 // Add Note
 app.post("/add-note", async (req, res) => {
   try {
+    console.log("Received request body:", req.body); // Debugging
+
     const { userId, title, description } = req.body;
 
     if (!userId) {
+      console.error("❌ User ID missing!");
       return res.status(401).json({ message: "Unauthorized: User not authenticated" });
     }
+
     if (!title || !description) {
       return res.status(400).json({ message: "All fields are required" });
     }
@@ -161,7 +165,7 @@ app.post("/add-note", async (req, res) => {
 
     res.json({ message: "Note added successfully" });
   } catch (error) {
-    console.error("Error adding note:", error);
+    console.error("❌ Error adding note:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
