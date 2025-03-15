@@ -7,6 +7,9 @@ const LocalStrategy = require("passport-local").Strategy;
 const expressSession = require("express-session");
 const cors = require("cors");
 const app = express();
+const path = require('path');
+
+
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
@@ -19,7 +22,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json()); // For parsing application/json
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Setup Express Session
 app.use(
@@ -36,16 +40,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Connect to MongoDB
-mongoose.connect(MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-})
-.then(() => console.log("Connected to MongoDB"))
-.catch((err) => {
-  console.error("MongoDB connection error:", err);
-  process.exit(1);
+}).then(() => {
+  console.log("Connected to MongoDB");
+}).catch(err => {
+  console.error("MongoDB Connection Error:", err);
 });
-
 // User Schema
 const UserSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
