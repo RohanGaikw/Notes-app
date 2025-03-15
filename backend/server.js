@@ -15,10 +15,11 @@ const MONGO_URI = process.env.MONGO_URI;
 
 // CORS configuration
 const corsOptions = {
-  origin: "http://localhost:5173", // Update to match the frontend URL (Vite dev server)
+  origin: ["http://localhost:5173", "https://notes-app-s1fw.vercel.app"], // ✅ Both Local & Deployed Frontend
   methods: "GET, POST, PUT, DELETE",
-  credentials: true, // Allow cookies and sessions to be sent
+  credentials: true,
 };
+
 
 app.use(cors(corsOptions));
 app.use(express.json()); // For parsing application/json
